@@ -20,7 +20,7 @@ This Project will create asset bundles from any supported 3d model format file t
 - You should delete your assets from the /Assets/Resources folder after generating the asset bundle. Otherwise, this may cause problems with naming on your next run. Always check .manifest to ensure you have all your assets in the bundle.
 
 # Terminal COMMAND (MAC)
-$unitypath -quit -batchmode -projectPath -buildTarget<.iOS/.Android/..> -executeMethod BuildAssets.BuildAssetBundle -logFile "
+$unitypath -quit -batchmode -projectPath<path/to/this/project> -buildTarget<.iOS/.Android/..> -executeMethod BuildAssets.BuildAssetBundle -logFile "
 
 $unitypath: Path to your unity installation, this is usually /Applications/Unity/Unity.app/Contents/MacOS/Unity
 
