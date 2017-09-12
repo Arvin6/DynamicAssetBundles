@@ -13,7 +13,7 @@ public class BuildAssets : MonoBehaviour
         int len = 0;
         string output_path = "Assets/AssetBundles";
         string Folder = "/Resources";
-        string log = "log.txt";
+        string log = "log.txt"; // You can also implement custom logging for your needs since this is running in batchmode
         string nameWithoutExtension ;
         string[] assetN;
         int N_Files;
@@ -23,10 +23,6 @@ public class BuildAssets : MonoBehaviour
 
         // Adding to path /Resource
         string path = UnityEngine.Application.dataPath + Folder;
-        //log
-        File.AppendAllText(log, DateTime.Now.ToString() + "\n\n");
-        File.AppendAllText(log, path + "\n");
-
 
         DirectoryInfo dir = new DirectoryInfo(path);
         FileInfo[] files = dir.GetFiles();
@@ -44,6 +40,7 @@ public class BuildAssets : MonoBehaviour
                         {
                                 nameWithoutExtension = Path.GetFileNameWithoutExtension(file.Name);
                                 AnimationClip[] anim = Resources.LoadAll <AnimationClip> (nameWithoutExtension);
+                                // You can add transitions and triggers if you want
                                 if((anim.Length>0) )
                                 {
                                         //AnimationClip idle = new AnimationClip();
@@ -79,10 +76,6 @@ public class BuildAssets : MonoBehaviour
 
         assetN = new string[N_Files+10];
 
-        //log
-        System.IO.File.AppendAllText(log, "Num assets on path: "+ N_Files + " \n\n");
-
-
         foreach (System.IO.FileInfo file in files)
         {
             if (file.Exists)
@@ -92,18 +85,14 @@ public class BuildAssets : MonoBehaviour
                     if(!file.Name.StartsWith(".") )
                     {
                         assetN[len] = "Assets"+ Folder +"/"+ file.Name;
-                        System.IO.File.AppendAllText(log, assetN[len] + " \n");
                         len += 1;
                     }
                 }
             }
         }
-        
-        File.AppendAllText(log, "Num assets on bundle: "+ len + " \n");
 
         AssetMap[0].assetNames = assetN;
 
         BuildPipeline.BuildAssetBundles(output_path, AssetMap, BuildAssetBundleOptions.None, BuildTarget.iOS);
-        System.IO.File.AppendAllText(log, "\t----X----\n"); 
     }
 }
