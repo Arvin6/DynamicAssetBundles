@@ -10,7 +10,7 @@ This Project will create asset bundles from any supported 3d model format file t
 
 - Run the command
 
-- If your 3d Model contains animationclips, these clips will be added to the Mecanim animation controller on FCFS basis. The controller will be generated in your /Assets/Resources folder with the name "-anim.controller"
+- If your 3d Model contains animationclips, these clips will be added to the Mecanim animation controller on FCFS basis. The controller will be generated in your /Assets/Resources folder with the name "<modelname>-anim.controller"
 
 - Your bundle will be generated in the /Assets/AssetBundles folder
 
